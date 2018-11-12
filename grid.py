@@ -68,7 +68,7 @@ class Inventory():
         self.__populateInventory()
     
     def __populateInventory(self):
-        for i in xrange(0, len(self.items)):
+        for i in range(0, len(self.items)):
             x = self.gridLength * self.sideLength
             y = self.width * i
             self.inventory.append(InventorySquare(x, y, self.width, self.items[i].GetString()))
