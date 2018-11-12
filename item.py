@@ -19,3 +19,8 @@ class Minion(Item):
 
     def __init__(self, stringRepresentation):
         self.stringRepresentation = stringRepresentation
+
+class Waypoint(Item):
+
+    def __init__(self, stringRepresentation):
+        self.stringRepresentation = stringRepresentation
