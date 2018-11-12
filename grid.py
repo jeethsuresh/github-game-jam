@@ -1,4 +1,4 @@
-from item import Wall, Turret, Minion 
+from item import Wall, Turret, Minion, Waypoint
 
 class GridSquare():
     x = 0
@@ -55,7 +55,7 @@ class InventorySquare():
         return False
     
 class Inventory():
-    items = [Wall("wall"), Turret("turret"), Minion("minion")]
+    items = [Wall("Wall"), Turret("Turret"), Minion("Minion"), Waypoint("Start"), Waypoint("End"), Waypoint("Checkpoint")]
     inventory = []
     gridLength = 0
     sideLength = 0
