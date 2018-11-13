@@ -10,7 +10,7 @@ def main():
     print("test")
     pygame.init()
 
-    size = [1000, 910]
+    size = [1000, 900]
     screen = pygame.display.set_mode(size)
 
     pygame.display.set_caption("ASDF TEST")
