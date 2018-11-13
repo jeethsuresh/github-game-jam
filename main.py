@@ -30,15 +30,17 @@ def main():
     mouse_button_pressed = False
     is_blue = True
     selectedItem = inventory[0].contains.GetString()
+    selectrect = pygame.Rect(0,0,0,0)
     while not done:
         screen.fill((255, 255, 255))
+        pygame.draw.rect(screen, (0,255,255,64), selectrect)
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            mousecursor = pygame.mouse.get_pos()
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE):
                 done = True
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                is_blue = not is_blue
+            if mouse_button_pressed:                                
+                selectrect = pygame.Rect(min(start_square[0] * 20, mousecursor[0]), min(start_square[1] * 20,mousecursor[1]) , abs(start_square[0] * 20 - mousecursor[0]) , abs(start_square[1] * 20 - mousecursor[1]))
             if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.MOUSEBUTTONUP:
-                mousecursor = pygame.mouse.get_pos()
                 current_square = (-1,-1)
                 for rect_row in grid:
                     current_square = (current_square[0] + 1, -1)
@@ -59,7 +61,8 @@ def main():
                                             grid[x][y].PutInSquare(selectedItem)
                                 start_square = (0,0)
                                 end_square = (0,0)
-                                mouse_button_pressed = False
+                                mouse_button_pressed = False    
+                                selectrect = pygame.Rect(0,0,0,0)
                 for inventory_item in inventory:
                     if inventory_item.CollidesWithPoint(mousecursor[0], mousecursor[1]):
                         selectedItem = inventory_item.contains.GetString()
