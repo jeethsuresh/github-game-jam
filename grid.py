@@ -1,4 +1,4 @@
-from item import Wall, Turret, Minion, Waypoint
+from item import Wall, Turret, Minion, Waypoint, Clear
 
 class GridSquare():
     x = 0
@@ -40,14 +40,14 @@ class InventorySquare():
     size = 0
     contains = ""
     
-    def __init__(self, x, y, size, contains):
+    def __init__(self, x, y, size, inventoryItem):
         self.x = x
         self.y = y
         self.size = size
-        self.contains = contains
+        self.contains = inventoryItem
     
-    def setContains(self, item):
-        self.contains = item
+    # def setContains(self, item):
+    #     self.contains = item
 
     def CollidesWithPoint(self, x, y):
         if x > self.x and x < (self.x + self.size) and y > self.y and y < (self.y + self.size):
@@ -55,7 +55,7 @@ class InventorySquare():
         return False
     
 class Inventory():
-    items = [Wall("Wall"), Turret("Turret"), Minion("Minion"), Waypoint("Start"), Waypoint("End"), Waypoint("Checkpoint")]
+    items = [Wall("Wall"), Turret("Turret"), Minion("Minion"), Waypoint("Start"), Waypoint("End"), Waypoint("Checkpoint"), Clear("Erase")]
     inventory = []
     gridLength = 0
     sideLength = 0
@@ -71,7 +71,7 @@ class Inventory():
         for i in range(0, len(self.items)):
             x = self.gridLength * self.sideLength
             y = self.width * i
-            self.inventory.append(InventorySquare(x, y, self.width, self.items[i].GetString()))
+            self.inventory.append(InventorySquare(x, y, self.width, self.items[i]))
     
     def GetInventory(self):
         return self.inventory
